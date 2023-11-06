@@ -6,7 +6,7 @@ import { Container } from './Container';
 
 const HeaderElem = styled.header`
     box-shadow: var(--shadow);
-    background-color: var(--color-ui-base);
+    // background-color: var(--color-ui-base);
 `;
 const Wrapper = styled.div`
     display: flex;
@@ -23,11 +23,10 @@ const Title = styled(Link).attrs({
     text-decoration: none;
 `;
 
-const SwitchMode = styled.div`
+const SwitchMode = styled.div`;
     display: flex;
     color: var(--color-text);
     font-size: var(--fs-sm);
-    // font-weight: var(--fw-bold);
     text-transform: capitalize;
     cursor: pointer;
 `;
@@ -35,11 +34,11 @@ const SwitchMode = styled.div`
 export default function Header() {
     const [theme, setTheme] = useState('light');
 
-    const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light')
+    const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');
 
     useEffect(() => {
         document.body.setAttribute('data-theme', theme);
-    }, [theme])
+    }, [theme]);
 
     return (
         <HeaderElem>

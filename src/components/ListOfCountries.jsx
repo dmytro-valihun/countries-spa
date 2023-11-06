@@ -14,7 +14,7 @@ const Wrapper = styled.section`
     @media (min-width: 992px) {
         grid-template-columns: repeat(4, 1fr);
     }
-`
+`;
 
 export default function ListOfCountries({children}) {
   return (

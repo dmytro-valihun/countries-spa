@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-// import { IoArrowBack } from 'react-icons/io5';
 import styled from 'styled-components';
 import CardImage from '../components/CardImage';
 import { ALL_COUNTRIES_DETAILED_INFO } from '../links';
+import BtnBack from '../components/BtnBack';
+import Borders from '../components/Borders';
 
 const Article = styled.article`
   padding: 50px 0;
@@ -42,7 +43,7 @@ const Lists = styled.div`
     padding: 0 20px;
     width: 50%;
     order: 1;
-    gap: 10px;
+    gap: 30px;
   }
 `;
 const List = styled.ul`
@@ -51,19 +52,19 @@ const List = styled.ul`
   margin: 0;
 `;
 const ListItem = styled.li`
-
+  list-style: none;
 `;
 
-export default function Details({countries}) {
+export default function Details({countries, setBorders}) {
   const params = useParams();
-  // const match = countries.filter(country => country.name.common === params.name)
-
   const [details, setDetails] = useState('' || []);
+  const [render, setRender] = useState('');
+  const filteredCountry = details.filter(country => country.name.common === params.name);
+
   useEffect(() => {
     axios.get(ALL_COUNTRIES_DETAILED_INFO).then(({data}) => (setDetails(data)))
   }, []);
 
-  const filteredCountry = details.filter(country => country.name.common === params.name);
   let info;
   if (filteredCountry.length > 0) {
     info = {
@@ -82,11 +83,13 @@ export default function Details({countries}) {
   }
 
   const deepObjParse = (obj) => {
-    const objects = Object.values(obj)
-    return objects
+    const objects = Object.values(obj);
+    return objects;
   }
 
   return (
+    <>
+    <BtnBack />
     <Article>
       {filteredCountry.length > 0 && 
         <Wrapper>
@@ -104,12 +107,20 @@ export default function Details({countries}) {
               <ListItem><b>Domain:</b> {info.domain}</ListItem>
             </List>
             <List>
-              <ListItem><b>Currencies:</b> {deepObjParse(info.currency).map(currency => (<div key={currency.name}>{currency.name}</div>))}</ListItem>
-              <ListItem><b>Languages:</b> {deepObjParse(info.language).map(language => (<div key={language}>{language}</div>))}</ListItem>
+              <ListItem><b>Currencies:</b> 
+                {deepObjParse(info.currency).map(currency => (<div key={currency.name}>{currency.name}</div>))}
+              </ListItem>
+              <ListItem><b>Languages:</b> 
+                {deepObjParse(info.language).map(language => (<div key={language}>{language}</div>))}
+              </ListItem>
             </List>
+            <div><div><b>Borders:</b></div>
+            <Borders details={details} params={params} setBorders={setBorders} render={render} setRender={setRender} />
+            </div>
           </Lists>
         </Wrapper>
       }
     </Article>
+    </>
   )
 }

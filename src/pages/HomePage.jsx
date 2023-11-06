@@ -33,26 +33,25 @@ export default function HomePage({countries, setCountries}) {
     <>
         <Controls onSearch={handleSearch}/>
             <ListOfCountries>
-            {filteredCountries.map(country => {
-                const countryInfo = {
-                img: country.flags.png,
-                name: country.name.common,
-                info: [
-                    {
-                    title: 'Population',
-                    description: country.population + ' people',
-                    },
-                    {
-                    title: 'Region',
-                    description: country.region,
-                    },
-                    {
-                    title: 'Capital',
-                    description: country.capital,
-                    }
-                ]
+                {filteredCountries.map(country => {
+                    const countryInfo = {
+                    img: country.flags.png,
+                    name: country.name.common,
+                    info: [
+                        {
+                        title: 'Population',
+                        description: country.population + ' people',
+                        },
+                        {
+                        title: 'Region',
+                        description: country.region,
+                        },
+                        {
+                        title: 'Capital',
+                        description: country.capital,
+                        }
+                    ]
                 }
-                // console.log(country.name.common)
                 return <Country key={country.name.common} onClick={() => navigate(`/country/${country.name.common}`)} {...countryInfo}/>
             })}
         </ListOfCountries>

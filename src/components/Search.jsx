@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IoSearchOutline } from 'react-icons/io5'
+import { IoSearchOutline } from 'react-icons/io5';
 
 
 const InputContainer = styled.label`
@@ -27,10 +27,7 @@ const InputSearch = styled.input.attrs({
     width: 100%
 `;
 
-
-
 export default function Search({search, setSearch}) {
-
   return (
     <InputContainer>
         <IoSearchOutline />

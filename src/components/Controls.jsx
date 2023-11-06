@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import Search from "./Search";
-import styled from 'styled-components'
+import styled from 'styled-components';
 import { Select } from './Select';
 
 const options = [
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
         flex-direction: row;
         justify-content: space-between;
     }
-`
+`;
 
 export default function Controls({onSearch}) {
     const [search, setSearch] = useState('');
@@ -28,7 +28,7 @@ export default function Controls({onSearch}) {
         const regionValue = region?.value || '';
         onSearch(search, regionValue);
         // eslint-disable-next-line
-    }, [search, region])
+    }, [search, region]);
 
   return (
     <Wrapper>

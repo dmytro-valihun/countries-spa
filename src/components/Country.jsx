@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 import CardImage from './CardImage';
 
-const Wrapper = styled.article`
-    // background-color: var(--color-bg)
+const Wrapper = styled.article`;
     box-shadow: var(--shadow);
     cursor: pointer;
 `;
 const CardBody = styled.div``;
-const CardTitle = styled.h3`
+const CardTitle = styled.h3`;
     text-align: center;
 `;
 const CardList = styled.ul`
@@ -35,4 +34,3 @@ export default function Country({img, name, info=[], onClick}) {
     </Wrapper>
   )
 }
-
